@@ -1,6 +1,6 @@
-# KittiSeg
+# SemSeg
 
-KittiSeg performs segmentation of roads by utilizing an FCN based model. The model achieved [first place](http://www.cvlibs.net/datasets/kitti/eval_road_detail.php?result=ca96b8137feb7a636f3d774c408b1243d8a6e0df) on the Kitti Road Detection Benchmark at submission time. Check out our [paper](https://arxiv.org/abs/1612.07695) for a detailed model description.
+SemSeg performs segmentation of roads by utilizing an FCN based model. The model achieved [first place](http://www.cvlibs.net/datasets/kitti/eval_road_detail.php?result=ca96b8137feb7a636f3d774c408b1243d8a6e0df) on the Kitti Road Detection Benchmark at submission time. Check out our [paper](https://arxiv.org/abs/1612.07695) for a detailed model description.
 
 <img src="data/examples/um_road_000032.png" width="288"> <img src="data/examples/uu_road_000002.png" width="288"> <img src="data/examples/uu_road_000049.png" width="288"> 
 
@@ -26,7 +26,7 @@ Those modules can be installed using: `pip install numpy scipy pillow matplotlib
 
 ## Setup
 
-1. Clone this repository: `git clone https://github.com/MarvinTeichmann/KittiSeg.git`
+1. Clone this repository: `git clone https://github.com/IAC-Team/SemSeg.git`
 2. Initialize all submodules: `git submodule update --init --recursive`
 3. [Optional] Download Kitti Road Data:
     1. Retrieve kitti data url here: [http://www.cvlibs.net/download.php?file=data_road.zip](http://www.cvlibs.net/download.php?file=data_road.zip)
@@ -43,6 +43,17 @@ If you forget the second step you might end up with an inconstant repository sta
 
 ## Tutorial
 
+### Manage Data Storage
+
+SemSeg allows to separate data storage from code. This is very useful in many server environments. By default, the data is stored in the folder `KittiSeg/DATA` and the output of runs in `KittiSeg/RUNS`. This behaviour can be changed by setting the bash environment variables: `$TV_DIR_DATA` and `$TV_DIR_RUNS`.
+
+Please create a directory named "SemSeg_DATA" in the same directory which "SemSeg" is in.
+
+All data will be downloaded to `../SemSeg_DATA/DATA/data_road`.
+
+All runs will be saved to `../SemSeg_DATA/RUNS/`.
+
+
 ### Getting started
 
 Run: `python demo.py --input_image data/demo/demo.png` to obtain a prediction using [demo.png](data//demo/demo.png) as input.
@@ -54,15 +65,9 @@ Run: `python train.py --hypes hypes/KittiSeg.json` to train a model using Kitti 
 If you like to understand the code, I would recommend looking at [demo.py](demo.py) first. I have documented each step as  	thoroughly as possible in this file.
 
 
-### Manage Data Storage
-
-KittiSeg allows to separate data storage from code. This is very useful in many server environments. By default, the data is stored in the folder `KittiSeg/DATA` and the output of runs in `KittiSeg/RUNS`. This behaviour can be changed by setting the bash environment variables: `$TV_DIR_DATA` and `$TV_DIR_RUNS`.
-
-Include  `export TV_DIR_DATA="/MY/LARGE/HDD/DATA"` in your `.profile` and the all data will be downloaded to `/MY/LARGE/HDD/DATA/data_road`. Include `export TV_DIR_RUNS="/MY/LARGE/HDD/RUNS"` in your `.profile` and all runs will be saved to `/MY/LARGE/HDD/RUNS/KittiSeg`
-
 ### RUNDIR and Experiment Organization
 
-KittiSeg helps you to organize large number of experiments. To do so the output of each run is stored in its own rundir. Each rundir contains:
+SemSeg helps you to organize large number of experiments. To do so the output of each run is stored in its own rundir. Each rundir contains:
 
 * `output.log` a copy of the training output which was printed to your screen
 * `tensorflow events` tensorboard can be run in rundir
@@ -104,7 +109,7 @@ KittiSeg is build on top of the TensorVision [TensorVision](https://github.com/T
 
 To utilize the entire TensorVision functionality install it using 
 
-`$ cd KittiSeg/submodules/TensorVision` <br>
+`$ cd SemSeg/submodules/TensorVision` <br>
 `$ python setup.py install`
 
 Now you can use the TensorVision command line tools, which includes:
