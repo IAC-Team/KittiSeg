@@ -1,10 +1,10 @@
 """
-Detects Cars in an image using KittiSeg.
+Detects Cars in an image using SemSeg.
 
 Input: Image
 Output: Image (with Cars plotted in Green)
 
-Utilizes: Trained KittiSeg weights. If no logdir is given,
+Utilizes: Trained SemSeg weights. If no logdir is given,
 pretrained weights will be downloaded and used.
 
 Usage:
@@ -17,7 +17,7 @@ The MIT License (MIT)
 
 Copyright (c) 2017 Marvin Teichmann
 
-Details: https://github.com/MarvinTeichmann/KittiSeg/blob/master/LICENSE
+Details: https://github.com/MarvinTeichmann/SemSeg/blob/master/LICENSE
 """
 from __future__ import absolute_import
 from __future__ import division
@@ -66,9 +66,9 @@ except ImportError:
 flags.DEFINE_string('logdir', None,
                     'Path to logdir.')
 flags.DEFINE_string('input_image', None,
-                    'Image to apply KittiSeg.')
+                    'Image to apply SemSeg.')
 flags.DEFINE_string('output_image', None,
-                    'Image to apply KittiSeg.')
+                    'Image to apply SemSeg.')
 
 
 default_run = 'KittiSeg_pretrained'
@@ -114,11 +114,15 @@ def main(_):
             "[--gpus GPUs_to_use] ")
         exit(1)
 
+    os.environ["TV_DIR_DATA"] = "../SemSeg_DATA/DATA"
+    os.environ["TV_DIR_RUNS"] = "../SemSeg_DATA/RUNS"
+
     if FLAGS.logdir is None:
         # Download and use weights from the MultiNet Paper
         if 'TV_DIR_RUNS' in os.environ:
-            runs_dir = os.path.join(os.environ['TV_DIR_RUNS'],
-                                    'KittiSeg')
+            runs_dir = os.environ['TV_DIR_RUNS']
+            # runs_dir = os.path.join(os.environ['TV_DIR_RUNS'],
+            #                         'SemSeg')
         else:
             runs_dir = 'RUNS'
         maybe_download_and_extract(runs_dir)
@@ -169,7 +173,7 @@ def main(_):
         image = scp.misc.imresize(image, size=(image_height, image_width),
                                   interp='cubic')
 
-    # Run KittiSeg model on image
+    # Run SemSeg model on image
     feed = {image_pl: image}
     softmax = prediction['softmax']
     output = sess.run([softmax], feed_dict=feed)
@@ -215,7 +219,7 @@ def main(_):
     logging.warning("Do NOT use this Code to evaluate multiple images.")
 
     logging.warning("Demo.py is **very slow** and designed "
-                    "to be a tutorial to show how the KittiSeg works.")
+                    "to be a tutorial to show how the SemSeg works.")
     logging.warning("")
     logging.warning("Please see this comment, if you like to apply demo.py to"
                     "multiple images see:")
