@@ -308,6 +308,8 @@ def do_inference(hypes, modules, logdir):
     data_input, arch, objective, solver = modules
 
     data_dir = hypes['dirs']['data_dir']
+    os.environ["TV_DIR_DATA"] = "../SemSeg_DATA/DATA"
+    os.environ["TV_DIR_RUNS"] = "../SemSeg_DATA/RUNS"
     if 'TV_DIR_DATA' in os.environ:
         data_dir = os.environ['TV_DIR_DATA']
         hypes['dirs']['data_dir'] = data_dir

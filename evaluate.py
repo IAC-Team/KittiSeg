@@ -95,7 +95,7 @@ def main(_):
         runs_dir = os.path.join(os.environ['TV_DIR_RUNS'],
                                 'KittiSeg')
     else:
-        runs_dir = 'RUNS'
+        runs_dir = '../SemSeg_DATA/RUNS'
 
     utils.set_dirs(hypes, tf.app.flags.FLAGS.hypes)
 

@@ -150,6 +150,7 @@ def _make_data_gen(hypes, phase, data_dir):
     road_color = np.array(hypes['data']['road_color'])
     background_color = np.array(hypes['data']['background_color'])
 
+    # TODO: replace the part for data loading
     data = _load_gt_file(hypes, data_file)
 
     for image, gt_image in data:
@@ -495,7 +496,7 @@ def main():
     q = {}
     q['train'] = create_queues(hypes, 'train')
     q['val'] = create_queues(hypes, 'val')
-    data_dir = "../DATA"
+    data_dir = "../../SemSeg_DATA/DATA"
 
     _make_data_gen(hypes, 'train', data_dir)
 

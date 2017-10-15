@@ -42,16 +42,18 @@ def get_pathes():
     Alternativly they can be set by the environoment variabels
     'TV_DIR_DATA' and 'TV_DIR_RUNS'.
     """
+    os.environ["TV_DIR_DATA"] = "../SemSeg_DATA/DATA"
+    os.environ["TV_DIR_RUNS"] = "../SemSeg_DATA/RUNS"
 
     if 'TV_DIR_DATA' in os.environ:
         data_dir = os.path.join(['hypes'], os.environ['TV_DIR_DATA'])
     else:
-        data_dir = "DATA"
+        data_dir = "../SemSeg_DATA/DATA"
 
     if 'TV_DIR_RUNS' in os.environ:
         run_dir = os.path.join(['hypes'], os.environ['TV_DIR_DATA'])
     else:
-        run_dir = "RUNS"
+        run_dir = "../SemSeg_DATA/RUNS"
 
     return data_dir, run_dir
 

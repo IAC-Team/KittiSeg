@@ -20,7 +20,9 @@ import zipfile
 
 
 import logging
-import utils
+import tensorvision.utils as utils
+
+from imp import reload
 reload(logging)
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',

@@ -133,7 +133,7 @@ def _initalize_variables(hypes):
             filename = os.path.join(os.environ['TV_DIR_DATA'], 'weights',
                                     "tensorflow_resnet", filename)
         else:
-            filename = os.path.join('DATA', 'weights', "tensorflow_resnet",
+            filename = os.path.join('../SemSeg_DATA/DATA', 'weights', "tensorflow_resnet",
                                     filename)
 
         if not os.path.exists(filename):
